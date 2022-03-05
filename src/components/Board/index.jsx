@@ -8,11 +8,15 @@ import { Roads } from "./Roads";
 
 const { centers, corners, roads } = coords();
 
-export const Board = () => (
-  <>
-    <Tiles centers={centers} />
-    <Centers centers={centers} />
-    <Corners corners={corners} />
-    <Roads roads={roads} />
-  </>
-);
+export const Board = ({ activePlayer }) => {
+  const { color } = activePlayer;
+
+  return (
+    <>
+      <Tiles centers={centers} />
+      <Centers centers={centers} />
+      <Corners corners={corners} color={color} />
+      <Roads roads={roads} color={color} />
+    </>
+  );
+};

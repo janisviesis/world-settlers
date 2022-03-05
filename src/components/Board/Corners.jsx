@@ -13,12 +13,12 @@ const style = {
   zIndex: 1,
 };
 
-export const Corners = ({ corners }) => {
+export const Corners = ({ corners, color }) => {
   const [data, setData] = useState(corners);
 
   const updateData = (index) => {
     const updatedData = [...data];
-    updatedData[index].c = "red";
+    updatedData[index].c = color;
     setData(updatedData);
   };
 
@@ -31,10 +31,10 @@ export const Corners = ({ corners }) => {
             ...style,
             left: d.x - CENTER_RAD,
             top: d.y - CENTER_RAD,
-            background: d.c || "red",
+            background: d.c || color,
             opacity: d.c ? "1" : "0",
           }}
-          onClick={() => updateData(index)}
+          onClick={() => (d.c ? {} : updateData(index))}
         >
           +
         </div>

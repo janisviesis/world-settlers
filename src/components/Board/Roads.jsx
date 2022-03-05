@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { ROAD_LENGTH, ROAD_WIDTH } from "../../constants";
 
-export const Roads = ({ roads }) => {
+export const Roads = ({ roads, color }) => {
   const [data, setData] = useState(roads);
 
   const updateData = (index) => {
     const updatedData = [...data];
-    updatedData[index].c = "purple";
+    updatedData[index].c = color;
     setData(updatedData);
   };
 
@@ -24,7 +24,7 @@ export const Roads = ({ roads }) => {
             background: r.c || "none",
             transform: `rotate(${r.deg}deg)`,
           }}
-          onClick={() => updateData(index)}
+          onClick={() => (r.c ? {} : updateData(index))}
         ></div>
       ))}
     </>

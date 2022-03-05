@@ -25,3 +25,47 @@ export const CANVAS_HEIGHT =
   VERT_RAD;
 
 export const COLORS = ["green", "orange", "limegreen", "yellow", "gray"];
+
+export const remaining = {
+  green: 3,
+  orange: 4,
+  limegreen: 5,
+  yellow: 3,
+  gray: 2,
+};
+
+export const PLAYERS = [
+  {
+    name: "Player A",
+    color: "red",
+    resources: {
+      wood: 2,
+      clay: 1,
+      wool: 2,
+      wheat: 0,
+      rock: 1,
+    },
+  },
+  {
+    name: "Player B",
+    color: "brown",
+    resources: {
+      wood: 1,
+      clay: 1,
+      wool: 1,
+      wheat: 1,
+      rock: 1,
+    },
+  },
+  {
+    name: "Player C",
+    color: "purple",
+    resources: {
+      wood: 1,
+      clay: 2,
+      wool: 3,
+      wheat: 4,
+      rock: 5,
+    },
+  },
+];
