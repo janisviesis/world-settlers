@@ -105,6 +105,7 @@ export const coords = () => {
       const coords = getHexCornerCoord(center, i);
       let cornerCoords = { x: 0, y: 0, deg: 0 };
       let roadCoords = { x: 0, y: 0, deg: 0 };
+      let seconCoords;
 
       switch (i) {
         case 0:
@@ -114,6 +115,9 @@ export const coords = () => {
           roadCoords.x = cornerCoords.x - ROAD_WIDTH / 2;
           roadCoords.y =
             cornerCoords.y + ((TILE_BORDER + SPACE) / 2) * Math.tan((Math.PI / 180) * 30);
+
+          seconCoords = getHexCornerCoord(center, 1);
+          roadCoords.coords = [coords, seconCoords];
           break;
         case 1:
           cornerCoords.x = coords.x + (TILE_BORDER + SPACE) / 2;
@@ -125,6 +129,9 @@ export const coords = () => {
             VERT_RAD / 4 +
             ((TILE_BORDER + SPACE) / 4) * Math.tan((Math.PI / 180) * 30);
           roadCoords.deg = 60;
+
+          seconCoords = getHexCornerCoord(center, 2);
+          roadCoords.coords = [coords, seconCoords];
           break;
         case 2:
           cornerCoords.x = coords.x;
@@ -136,6 +143,9 @@ export const coords = () => {
             (3 * VERT_RAD) / 4 -
             ((TILE_BORDER + SPACE) / 4) * Math.tan((Math.PI / 180) * 30);
           roadCoords.deg = -60;
+
+          seconCoords = getHexCornerCoord(center, 3);
+          roadCoords.coords = [coords, seconCoords];
           break;
         case 3:
           cornerCoords.x = coords.x - (TILE_BORDER + SPACE) / 2;
@@ -146,6 +156,9 @@ export const coords = () => {
             cornerCoords.y -
             ((TILE_BORDER + SPACE) / 2) * Math.tan((Math.PI / 180) * 30) -
             VERT_RAD;
+
+          seconCoords = getHexCornerCoord(center, 4);
+          roadCoords.coords = [coords, seconCoords];
           break;
         case 4:
           cornerCoords.x = coords.x - (TILE_BORDER + SPACE) / 2;
@@ -157,6 +170,9 @@ export const coords = () => {
             (3 * VERT_RAD) / 4 -
             ((TILE_BORDER + SPACE) / 4) * Math.tan((Math.PI / 180) * 30);
           roadCoords.deg = 60;
+
+          seconCoords = getHexCornerCoord(center, 5);
+          roadCoords.coords = [coords, seconCoords];
           break;
         case 5:
           cornerCoords.x = coords.x;
@@ -168,6 +184,9 @@ export const coords = () => {
             VERT_RAD / 4 +
             ((TILE_BORDER + SPACE) / 4) * Math.tan((Math.PI / 180) * 30);
           roadCoords.deg = -60;
+
+          seconCoords = getHexCornerCoord(center, 0);
+          roadCoords.coords = [coords, seconCoords];
           break;
         default:
           break;
@@ -180,6 +199,7 @@ export const coords = () => {
           x: roadCoords.x.toFixed(11),
           y: roadCoords.y.toFixed(11),
           deg: roadCoords.deg,
+          coords: roadCoords.coords,
         });
     }
   });

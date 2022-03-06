@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { coords } from "../../utils/calculateCoords";
 
 import { Tiles } from "./Tiles";
@@ -11,12 +11,14 @@ const { centers, corners, roads } = coords();
 export const Board = ({ activePlayer }) => {
   const { color } = activePlayer;
 
+  const [taken, setTaken] = useState({ corners: [], roads: [] });
+
   return (
     <>
       <Tiles centers={centers} />
       <Centers centers={centers} />
-      <Corners corners={corners} color={color} />
-      <Roads roads={roads} color={color} />
+      <Corners corners={corners} color={color} taken={taken} setTaken={setTaken} />
+      <Roads roads={roads} color={color} taken={taken} setTaken={setTaken} />
     </>
   );
 };

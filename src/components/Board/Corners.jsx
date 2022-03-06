@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CENTER_RAD, BORDER } from "../../constants";
+import { CENTER_RAD, BORDER_CORNER } from "../../constants";
 
 const style = {
   width: 2 * CENTER_RAD,
@@ -13,9 +13,8 @@ const style = {
   zIndex: 1,
 };
 
-export const Corners = ({ corners, color }) => {
+export const Corners = ({ corners, color, taken, setTaken }) => {
   const [data, setData] = useState(corners);
-  const [taken, setTaken] = useState([]);
 
   const updateData = (index, icon) => {
     const updatedData = [...data];
@@ -23,7 +22,7 @@ export const Corners = ({ corners, color }) => {
     if (icon === "home") {
       updatedData[index].icon = "city";
     } else {
-      setTaken([...taken, updatedData[index]]);
+      setTaken({ ...taken, corners: [...taken.corners, updatedData[index]] });
       updatedData[index].icon = "home";
       updatedData[index].c = color;
     }
@@ -37,8 +36,8 @@ export const Corners = ({ corners, color }) => {
 
     let notAllowed = false;
 
-    taken.forEach(({ x, y }) => {
-      if (Math.sqrt((x1 - x) * (x1 - x) + (y1 - y) * (y1 - y)) <= BORDER) notAllowed = true;
+    taken.corners.forEach(({ x, y }) => {
+      if (Math.sqrt((x1 - x) * (x1 - x) + (y1 - y) * (y1 - y)) <= BORDER_CORNER) notAllowed = true;
     });
 
     return notAllowed;
