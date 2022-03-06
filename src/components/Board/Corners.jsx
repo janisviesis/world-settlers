@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CENTER_RAD } from "../../constants";
+import { CENTER_RAD, BORDER } from "../../constants";
 
 const style = {
   width: 2 * CENTER_RAD,
@@ -7,7 +7,7 @@ const style = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  borderRadius: 2 * CENTER_RAD,
+  borderRadius: "50%",
   position: "absolute",
   cursor: "pointer",
   zIndex: 1,
@@ -15,11 +15,33 @@ const style = {
 
 export const Corners = ({ corners, color }) => {
   const [data, setData] = useState(corners);
+  const [taken, setTaken] = useState([]);
 
-  const updateData = (index) => {
+  const updateData = (index, icon) => {
     const updatedData = [...data];
-    updatedData[index].c = color;
+
+    if (icon === "home") {
+      updatedData[index].icon = "city";
+    } else {
+      setTaken([...taken, updatedData[index]]);
+      updatedData[index].icon = "home";
+      updatedData[index].c = color;
+    }
+
     setData(updatedData);
+  };
+
+  const checkAllowed = (e) => {
+    const x1 = e.pageX;
+    const y1 = e.pageY;
+
+    let notAllowed = false;
+
+    taken.forEach(({ x, y }) => {
+      if (Math.sqrt((x1 - x) * (x1 - x) + (y1 - y) * (y1 - y)) <= BORDER) notAllowed = true;
+    });
+
+    return notAllowed;
   };
 
   return (
@@ -34,9 +56,13 @@ export const Corners = ({ corners, color }) => {
             background: d.c || color,
             opacity: d.c ? "1" : "0",
           }}
-          onClick={() => (d.c ? {} : updateData(index))}
+          onClick={(e) =>
+            d.icon === "city" || (d.c ? d.c !== color : d.c) || checkAllowed(e)
+              ? {}
+              : updateData(index, d.icon)
+          }
         >
-          +
+          <i className={`fas fa-${d.icon}`}></i>
         </div>
       ))}
     </>

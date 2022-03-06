@@ -12,6 +12,9 @@ export const SPACE = 0;
 export const CENTER_BORDER = 3;
 export const CENTER_RAD = VERT_RAD / 5 + (TILE_BORDER + SPACE) / 6;
 
+export const BORDER =
+  VERT_RAD + 2 * (TILE_BORDER + SPACE) * Math.tan((Math.PI / 180) * 30) + CENTER_RAD;
+
 export const ROAD_LENGTH = VERT_RAD;
 export const ROAD_WIDTH = VERT_RAD / 5;
 

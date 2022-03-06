@@ -9,7 +9,7 @@ const style = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  borderRadius: 2 * CENTER_RAD,
+  borderRadius: "50%",
   border: `${CENTER_BORDER}px solid black`,
   fontFamily: "fantasy",
   background: "white",
