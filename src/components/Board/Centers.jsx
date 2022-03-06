@@ -71,7 +71,6 @@ export const Centers = ({ centers }) => (
             fontWeight,
             color,
           }}
-          onClick={() => console.log(center)}
         >
           {center.n}
         </div>

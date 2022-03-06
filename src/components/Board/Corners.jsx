@@ -57,7 +57,7 @@ export const Corners = ({ corners, color }) => {
             opacity: d.c ? "1" : "0",
           }}
           onClick={(e) =>
-            d.icon === "city" || (d.c ? d.c !== color : d.c) || checkAllowed(e)
+            d.icon === "city" || (d.c ? d.c !== color : false) || (!d.icon && checkAllowed(e))
               ? {}
               : updateData(index, d.icon)
           }
